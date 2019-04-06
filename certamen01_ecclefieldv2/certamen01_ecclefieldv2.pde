@@ -13,5 +13,7 @@ a = new ClassMov_02(rotX);
 void draw(){
 
   background(255);
-  a.diagramacion(rotX);
+
+  a.diagramacion1();
+  a.diagramacion2();
 }
