@@ -15,84 +15,145 @@ import java.io.IOException;
 public class certamen01_ecclefieldv2 extends PApplet {
 
 
-int rotX;
-
+int rot;
+boolean ciclo1 = true;
+boolean ciclo2 = false;
 ClassMov_02 a;
 
+// Colores de fondo
+int blanco = 255;
+int negro = 0;
+int fondo = 255;
 
 public void setup(){
 
-a = new ClassMov_02(rotX);
+a = new ClassMov_02(rot);
 
 }
 
 public void draw(){
+  // Comprovaciones
+  println(rot);
+  /////////////////
+  background(fondo);
+  rot = frameCount;
 
-  background(255);
+  if(ciclo1 == true){
+    a.diagramacion1(rot);
+    a.diagramacion2(rot);
+  }
 
-  a.diagramacion1();
-  a.diagramacion2();
+  if(ciclo2 == true){
+    a.diagramacion3(rot);
+    a.diagramacion4(rot);
+  }
+
+}
+
+
+public void keyPressed(){
+  if (keyPressed) {
+    if (key == 'b' || key == 'B') {
+      fondo = negro;
+      ciclo1 = false;
+      ciclo2 = true;
+    }
+  }
+
+  if (keyPressed) {
+    if (key == 'n' || key == 'N') {
+      fondo = blanco;
+      ciclo1 = true;
+      ciclo2 = false;
+    }
+  }
 }
 class ClassMov_02{
 
-int rotX;
+int rot;
 
 
-  ClassMov_02(int rotX){
-    this.rotX = rotX;
+  ClassMov_02(int rot){
+    this.rot = rot;
   }
 
 
 //  PRIMERA ROTACION //
-
-public void diagramacion1(){
-  for(int posY = 0; posY < height; posY = posY + 90){
-    for(int posX2 = 0; posX2 < 842; posX2 = posX2 + 90){
-      pushMatrix();
-      translate(posX2,posY);
-      figura1();
-      popMatrix();
-    }
-  }
-}
-
-public void diagramacion2(){
-  for(int posY = 45; posY < height; posY = posY + 90){
-    for(int posX2 = 45; posX2 < 842; posX2 = posX2 + 90){
-      pushMatrix();
-      translate(posX2,posY);
-      figura1();
-      popMatrix();
-
-    }
-  }
-}
-
-public void figura1(){
+public void figura1(int rot){
 
   pushMatrix();
     rectMode(CENTER);
-    stroke(0);
-    fill(120,150,80);
-    rotate(radians(frameCount));
-    rect(0, 0, 45, 45);
+    noStroke();
+    fill(0);
+    rotate(radians(rot));
+    rect(0, 0, 50, 50);
   popMatrix();
 }
+
+
+public void diagramacion1(int rot){
+  for(int posY = 0; posY < height; posY = posY + 100){
+    for(int posX2 = 0; posX2 < 842; posX2 = posX2 + 100){
+      pushMatrix();
+      translate(posX2,posY);
+      figura1(rot);
+      popMatrix();
+    }
+  }
+}
+
+public void diagramacion2(int rot){
+  for(int posY = 50; posY < height; posY = posY + 100){
+    for(int posX2 = 50; posX2 < 842; posX2 = posX2 + 100){
+      pushMatrix();
+      translate(posX2,posY);
+      figura1(rot);
+      popMatrix();
+
+    }
+  }
+}
+
+
 
 ///////////////////////////////////////////////////////////////////////////////
 
-public void figura2(){
+public void figura2(int rot){
   pushMatrix();
     rectMode(CENTER);
-    stroke(0);
-    fill(120,150,80);
-    rotate(radians(frameCount));
-    rect(0, 0, 45, 45);
+    noStroke();
+    fill(255);
+    rotate(radians(rot));
+    rect(0, 0, 50, 50);
   popMatrix();
 
-
-
 }
+
+
+public void diagramacion3(int rot){
+  for(int posY = -50; posY < height; posY = posY + 100){
+    for(int posX2 = 0; posX2 < 842; posX2 = posX2 + 100){
+      pushMatrix();
+      translate(posX2,posY);
+      figura2(rot);
+      popMatrix();
+    }
+  }
+}
+
+
+public void diagramacion4(int rot){
+  for(int posY = 0; posY < height; posY = posY + 100){
+    for(int posX2 = -50; posX2 < 842; posX2 = posX2 + 100){
+      pushMatrix();
+      translate(posX2,posY);
+      figura2(rot);
+      popMatrix();
+    }
+  }
+}
+
+
 }
   public void settings() { 
 size(842,595); }

@@ -1,61 +1,87 @@
 class ClassMov_02{
 
-int rotX;
+int rot;
 
 
-  ClassMov_02(int rotX){
-    this.rotX = rotX;
+  ClassMov_02(int rot){
+    this.rot = rot;
   }
 
 
 //  PRIMERA ROTACION //
-
-void diagramacion1(){
-  for(int posY = 0; posY < height; posY = posY + 90){
-    for(int posX2 = 0; posX2 < 842; posX2 = posX2 + 90){
-      pushMatrix();
-      translate(posX2,posY);
-      figura1();
-      popMatrix();
-    }
-  }
-}
-
-void diagramacion2(){
-  for(int posY = 45; posY < height; posY = posY + 90){
-    for(int posX2 = 45; posX2 < 842; posX2 = posX2 + 90){
-      pushMatrix();
-      translate(posX2,posY);
-      figura1();
-      popMatrix();
-
-    }
-  }
-}
-
-void figura1(){
+void figura1(int rot){
 
   pushMatrix();
     rectMode(CENTER);
-    stroke(0);
-    fill(120,150,80);
-    rotate(radians(frameCount));
-    rect(0, 0, 45, 45);
+    noStroke();
+    fill(0);
+    rotate(radians(rot));
+    rect(0, 0, 50, 50);
   popMatrix();
 }
+
+
+void diagramacion1(int rot){
+  for(int posY = 0; posY < height; posY = posY + 100){
+    for(int posX2 = 0; posX2 < 842; posX2 = posX2 + 100){
+      pushMatrix();
+      translate(posX2,posY);
+      figura1(rot);
+      popMatrix();
+    }
+  }
+}
+
+void diagramacion2(int rot){
+  for(int posY = 50; posY < height; posY = posY + 100){
+    for(int posX2 = 50; posX2 < 842; posX2 = posX2 + 100){
+      pushMatrix();
+      translate(posX2,posY);
+      figura1(rot);
+      popMatrix();
+
+    }
+  }
+}
+
+
 
 ///////////////////////////////////////////////////////////////////////////////
 
-void figura2(){
+void figura2(int rot){
   pushMatrix();
     rectMode(CENTER);
-    stroke(0);
-    fill(120,150,80);
-    rotate(radians(frameCount));
-    rect(0, 0, 45, 45);
+    noStroke();
+    fill(255);
+    rotate(radians(rot));
+    rect(0, 0, 50, 50);
   popMatrix();
 
-
-
 }
+
+
+void diagramacion3(int rot){
+  for(int posY = -50; posY < height; posY = posY + 100){
+    for(int posX2 = 0; posX2 < 842; posX2 = posX2 + 100){
+      pushMatrix();
+      translate(posX2,posY);
+      figura2(rot);
+      popMatrix();
+    }
+  }
+}
+
+
+void diagramacion4(int rot){
+  for(int posY = 0; posY < height; posY = posY + 100){
+    for(int posX2 = -50; posX2 < 842; posX2 = posX2 + 100){
+      pushMatrix();
+      translate(posX2,posY);
+      figura2(rot);
+      popMatrix();
+    }
+  }
+}
+
+
 }
