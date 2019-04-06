@@ -22,8 +22,8 @@ void figura1(int rot){
 
 
 void diagramacion1(int rot){
-  for(int posY = 0; posY < height; posY = posY + 100){
-    for(int posX2 = 0; posX2 < 842; posX2 = posX2 + 100){
+  for(int posY = 0; posY < 650; posY = posY + 100){
+    for(int posX2 = 0; posX2 < 900; posX2 = posX2 + 100){
       pushMatrix();
       translate(posX2,posY);
       figura1(rot);
@@ -33,8 +33,8 @@ void diagramacion1(int rot){
 }
 
 void diagramacion2(int rot){
-  for(int posY = 50; posY < height; posY = posY + 100){
-    for(int posX2 = 50; posX2 < 842; posX2 = posX2 + 100){
+  for(int posY = 50; posY < 650; posY = posY + 100){
+    for(int posX2 = 50; posX2 < 900; posX2 = posX2 + 100){
       pushMatrix();
       translate(posX2,posY);
       figura1(rot);
@@ -61,8 +61,8 @@ void figura2(int rot){
 
 
 void diagramacion3(int rot){
-  for(int posY = -50; posY < height; posY = posY + 100){
-    for(int posX2 = 0; posX2 < 842; posX2 = posX2 + 100){
+  for(int posY = -50; posY < 650; posY = posY + 100){
+    for(int posX2 = 0; posX2 < 900; posX2 = posX2 + 100){
       pushMatrix();
       translate(posX2,posY);
       figura2(rot);
@@ -73,8 +73,8 @@ void diagramacion3(int rot){
 
 
 void diagramacion4(int rot){
-  for(int posY = 0; posY < height; posY = posY + 100){
-    for(int posX2 = -50; posX2 < 842; posX2 = posX2 + 100){
+  for(int posY = 0; posY < 650; posY = posY + 100){
+    for(int posX2 = -50; posX2 < 900; posX2 = posX2 + 100){
       pushMatrix();
       translate(posX2,posY);
       figura2(rot);

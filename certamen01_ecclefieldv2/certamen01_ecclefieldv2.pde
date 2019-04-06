@@ -32,7 +32,23 @@ void draw(){
     a.diagramacion4(rot);
   }
 
+  if(rot > 90){
+
+    fondo = negro;
+    ciclo1 = false;
+    ciclo2 = true;
+
+  }
+
+  if(rot < 90 ){
+    fondo = blanco;
+    ciclo1 = true;
+    ciclo2 = false;
+  }
+
+  if(rot > 180){frameCount = 0;}      // Resetear el contador
 }
+
 
 
 void keyPressed(){
