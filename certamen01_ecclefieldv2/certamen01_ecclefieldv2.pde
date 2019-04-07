@@ -1,6 +1,6 @@
 
 int rot;
-int rot2;
+float rot2;
 float rot3;
 float rot4;
 
@@ -34,10 +34,10 @@ void draw(){
   /////////////////
   background(fondo);
   rot = frameCount;
-  rot2 = rot2 + 1;
-  rot3 = rot3 + 0.75;
-  rot4 = rot4 + 1;
-  estado = estado + 1;
+  rot2 = rot2 + 0.995;
+  rot3 = rot3 + 0.745;
+  rot4 = rot4 + 0.995;
+  estado = estado + 0.988;
   estadoRect = estadoRect + 0.6;
 
 if (sketch1 == true){
@@ -52,14 +52,14 @@ if (sketch1 == true){
     a.diagramacion4(rot);
   }
 
-  if(rot > 90){
+  if(rot > 90 && sketch1 == true){
     fondo = negro;
     ciclo1 = false;
     ciclo2 = true;
 
   }
 
-  if(rot < 90 ){
+  if(rot < 90 && sketch1 == true){
     fondo = blanco;
     ciclo1 = true;
     ciclo2 = false;
@@ -92,12 +92,17 @@ if (sketch2 == true){
 
 
   if(ciclo4 == true && sketch2 == true){
+    fondo = negro;
     a.diagramacion6(rot2);
     a.diagramacion7(rot2);
     a.diagramacion8(rot3);
 
   }
 
+  if (ciclo4 == false && sketch2 == true){
+    fondo = blanco;
+    a.diagramacion9(rot3);
+  }
 }
   if(rot > 180){frameCount = 0;}      // Resetear el contador
 }
@@ -128,6 +133,14 @@ void keyPressed(){
 
     }
   }
+
+  if (keyPressed) {
+    if (key == 'w' || key == 'W') {
+      sketch1 = true;
+      sketch2 = false;
+    }
+  }
+
 
   if (keyPressed) {
     if (key == 'e' || key == 'E') {

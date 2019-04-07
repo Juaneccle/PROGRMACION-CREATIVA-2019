@@ -16,7 +16,7 @@ public class certamen01_ecclefieldv2 extends PApplet {
 
 
 int rot;
-int rot2;
+float rot2;
 float rot3;
 float rot4;
 
@@ -50,10 +50,10 @@ public void draw(){
   /////////////////
   background(fondo);
   rot = frameCount;
-  rot2 = rot2 + 1;
-  rot3 = rot3 + 0.75f;
-  rot4 = rot4 + 1;
-  estado = estado + 1;
+  rot2 = rot2 + 0.995f;
+  rot3 = rot3 + 0.745f;
+  rot4 = rot4 + 0.995f;
+  estado = estado + 0.988f;
   estadoRect = estadoRect + 0.6f;
 
 if (sketch1 == true){
@@ -68,14 +68,14 @@ if (sketch1 == true){
     a.diagramacion4(rot);
   }
 
-  if(rot > 90){
+  if(rot > 90 && sketch1 == true){
     fondo = negro;
     ciclo1 = false;
     ciclo2 = true;
 
   }
 
-  if(rot < 90 ){
+  if(rot < 90 && sketch1 == true){
     fondo = blanco;
     ciclo1 = true;
     ciclo2 = false;
@@ -108,12 +108,17 @@ if (sketch2 == true){
 
 
   if(ciclo4 == true && sketch2 == true){
+    fondo = negro;
     a.diagramacion6(rot2);
     a.diagramacion7(rot2);
     a.diagramacion8(rot3);
 
   }
 
+  if (ciclo4 == false && sketch2 == true){
+    fondo = blanco;
+    a.diagramacion9(rot3);
+  }
 }
   if(rot > 180){frameCount = 0;}      // Resetear el contador
 }
@@ -146,6 +151,14 @@ public void keyPressed(){
   }
 
   if (keyPressed) {
+    if (key == 'w' || key == 'W') {
+      sketch1 = true;
+      sketch2 = false;
+    }
+  }
+
+
+  if (keyPressed) {
     if (key == 'e' || key == 'E') {
 
       sketch3 = true;
@@ -158,11 +171,11 @@ public void keyPressed(){
 class ClassMov_02{
 
 int rot;
-int rot2;
+float rot2;
 float rot3;
 float rot4;
 
-  ClassMov_02(int rot, int rot2, float rot3, float rot4){
+  ClassMov_02(int rot, float rot2, float rot3, float rot4){
     this.rot = rot;
     this.rot2 = rot2;
     this.rot3 = rot3;
@@ -260,7 +273,7 @@ public void figura3(){
 }
 
 // TRIANGULO
-public void figura4(int rot2){
+public void figura4(float rot2){
   stroke(0);
   fill(255);
   pushMatrix();
@@ -268,7 +281,7 @@ public void figura4(int rot2){
   popMatrix();
 }
 
-public void figura5(int rot2){
+public void figura5(float rot2){
   stroke(0);
   fill(255);
   pushMatrix();
@@ -280,6 +293,16 @@ public void figura5(int rot2){
 public void figura6(float rot3){
   stroke(0);
   fill(255);
+  pushMatrix();
+    rectMode(CENTER);
+    rotate(radians(rot3));
+    rect(0,0,68,68);
+  popMatrix();
+}
+
+public void figura7(float rot3){
+  stroke(0);
+  fill(0);
   pushMatrix();
     rectMode(CENTER);
     rotate(radians(rot3));
@@ -300,9 +323,7 @@ for(int posY = 0; posY < 650; posY = posY + 190){
 }
 }
 
-
-
-public void diagramacion6(int rot2){
+public void diagramacion6(float rot2){
   for(int posY = -81; posY < 650; posY = posY + 180){
   for (int p = 0; p < 960; p = p +138){
     pushMatrix();
@@ -314,7 +335,7 @@ public void diagramacion6(int rot2){
 }
 }
 
-public void diagramacion7(int rot2){
+public void diagramacion7(float rot2){
   for(int posY = 10; posY < 650; posY = posY + 170){
   for (int p = 0; p < 960; p = p +138){
     pushMatrix();
@@ -332,6 +353,18 @@ public void diagramacion8(float rot3){
     pushMatrix();
       translate(p,posY);
       figura6(rot3);
+    popMatrix();
+  }
+}
+}
+
+public void diagramacion9(float rot3){
+
+  for(int posY = 95; posY < 650; posY = posY + 190){
+  for (int p = -70; p < 960; p = p +138){
+    pushMatrix();
+      translate(p,posY);
+      figura7(rot3);
     popMatrix();
   }
 }
