@@ -17,7 +17,13 @@ public class certamen01_ecclefieldv2 extends PApplet {
 
 int rot;
 int rot2;
-int estado;
+float rot3;
+float rot4;
+
+float estado;
+float estadoRect;
+
+boolean sketch1 = true;
 boolean estadoFondo = true;
 boolean sketch2 = false;
 boolean sketch3 = false;
@@ -34,18 +40,23 @@ int fondo = 255;
 
 public void setup(){
 
-a = new ClassMov_02(rot, rot2);
+a = new ClassMov_02(rot, rot2, rot3, rot4);
 
 }
 
 public void draw(){
   // Comprovaciones
-  println(rot,rot2);
+  println(rot,rot2, estado);
   /////////////////
   background(fondo);
   rot = frameCount;
   rot2 = rot2 + 1;
+  rot3 = rot3 + 0.75f;
+  rot4 = rot4 + 1;
   estado = estado + 1;
+  estadoRect = estadoRect + 0.6f;
+
+if (sketch1 == true){
 
   if(ciclo1 == true){
     a.diagramacion1(rot);
@@ -69,20 +80,25 @@ public void draw(){
     ciclo1 = true;
     ciclo2 = false;
   }
+}
+
+//////////////////////////// SEGUNDO SKETCH /////////////////////////////////
+
+if (sketch2 == true){
+
 
   if(estado > 108){
     ciclo4 = true;
-    
-  }
+}
 
-  if(estado > 240 ){
+  if(estado > 238 ){
     ciclo4 = false;
     estado = 0;
   }
 
 
-  if (ciclo3 == true){
-    a.diagramacion5();
+  if (sketch2 == true){
+    a.diagramacion5(rot4);
     //a.diagramacion6();
     fondo = blanco;
     ciclo1 = false;
@@ -93,9 +109,12 @@ public void draw(){
 
   if(ciclo4 == true && sketch2 == true){
     a.diagramacion6(rot2);
+    a.diagramacion7(rot2);
+    a.diagramacion8(rot3);
+
   }
 
-
+}
   if(rot > 180){frameCount = 0;}      // Resetear el contador
 }
 
@@ -120,9 +139,7 @@ public void keyPressed(){
 
   if (keyPressed) {
     if (key == 'q' || key == 'Q') {
-      ciclo1 = false;
-      ciclo2 = false;
-      ciclo3 = true;
+      sketch1 = false;
       sketch2 = true;
 
     }
@@ -142,10 +159,14 @@ class ClassMov_02{
 
 int rot;
 int rot2;
+float rot3;
+float rot4;
 
-  ClassMov_02(int rot, int rot2){
+  ClassMov_02(int rot, int rot2, float rot3, float rot4){
     this.rot = rot;
     this.rot2 = rot2;
+    this.rot3 = rot3;
+    this.rot4 = rot4;
   }
 
 
@@ -240,33 +261,82 @@ public void figura3(){
 
 // TRIANGULO
 public void figura4(int rot2){
-
-  fill(150,200,60);
+  stroke(0);
+  fill(255);
   pushMatrix();
-  rotate(radians(rot2));
-  triangle(-35, 20, 0, -36, 34, 20);
+    triangle(-35, 20, 0, -36, 34, 20);
   popMatrix();
 }
 
-public void diagramacion5 (){
+public void figura5(int rot2){
+  stroke(0);
+  fill(255);
+  pushMatrix();
+    rotate(radians(rot2));
+    triangle(-35, 20, 0, -36, 34, 20);
+  popMatrix();
+}
+
+public void figura6(float rot3){
+  stroke(0);
+  fill(255);
+  pushMatrix();
+    rectMode(CENTER);
+    rotate(radians(rot3));
+    rect(0,0,68,68);
+  popMatrix();
+}
+
+public void diagramacion5 (float rot4){
+for(int posY = 0; posY < 650; posY = posY + 190){
   for (int p = 0; p < 960; p = p +138){
     pushMatrix();
       rectMode(CENTER);
-      translate(p, height/2);
-      rotate(radians(frameCount+30));
+      translate(p, posY);
+      rotate(radians(rot4+30));
       figura3();
     popMatrix();
+  }
 }
 }
 
+
+
 public void diagramacion6(int rot2){
+  for(int posY = -81; posY < 650; posY = posY + 180){
   for (int p = 0; p < 960; p = p +138){
     pushMatrix();
-      translate(p-69,336);
+      translate(p-69,posY+50);
+      rotate(radians(rot2+60));
       figura4(rot2);
     popMatrix();
   }
 }
+}
+
+public void diagramacion7(int rot2){
+  for(int posY = 10; posY < 650; posY = posY + 170){
+  for (int p = 0; p < 960; p = p +138){
+    pushMatrix();
+      translate(p-69,posY+50);
+      figura5(rot2);
+    popMatrix();
+  }
+}
+}
+
+public void diagramacion8(float rot3){
+
+  for(int posY = 95; posY < 650; posY = posY + 190){
+  for (int p = 0; p < 960; p = p +138){
+    pushMatrix();
+      translate(p,posY);
+      figura6(rot3);
+    popMatrix();
+  }
+}
+}
+
 }
 /*
 // HEXAGONO

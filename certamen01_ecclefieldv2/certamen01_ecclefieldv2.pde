@@ -1,7 +1,13 @@
 
 int rot;
 int rot2;
-int estado;
+float rot3;
+float rot4;
+
+float estado;
+float estadoRect;
+
+boolean sketch1 = true;
 boolean estadoFondo = true;
 boolean sketch2 = false;
 boolean sketch3 = false;
@@ -18,18 +24,23 @@ int fondo = 255;
 
 void setup(){
 size(842,595);
-a = new ClassMov_02(rot, rot2);
+a = new ClassMov_02(rot, rot2, rot3, rot4);
 
 }
 
 void draw(){
   // Comprovaciones
-  println(rot,rot2);
+  println(rot,rot2, estado);
   /////////////////
   background(fondo);
   rot = frameCount;
   rot2 = rot2 + 1;
+  rot3 = rot3 + 0.75;
+  rot4 = rot4 + 1;
   estado = estado + 1;
+  estadoRect = estadoRect + 0.6;
+
+if (sketch1 == true){
 
   if(ciclo1 == true){
     a.diagramacion1(rot);
@@ -53,20 +64,25 @@ void draw(){
     ciclo1 = true;
     ciclo2 = false;
   }
+}
+
+//////////////////////////// SEGUNDO SKETCH /////////////////////////////////
+
+if (sketch2 == true){
+
 
   if(estado > 108){
     ciclo4 = true;
-    
-  }
+}
 
-  if(estado > 240 ){
+  if(estado > 238 ){
     ciclo4 = false;
     estado = 0;
   }
 
 
-  if (ciclo3 == true){
-    a.diagramacion5();
+  if (sketch2 == true){
+    a.diagramacion5(rot4);
     //a.diagramacion6();
     fondo = blanco;
     ciclo1 = false;
@@ -77,9 +93,12 @@ void draw(){
 
   if(ciclo4 == true && sketch2 == true){
     a.diagramacion6(rot2);
+    a.diagramacion7(rot2);
+    a.diagramacion8(rot3);
+
   }
 
-
+}
   if(rot > 180){frameCount = 0;}      // Resetear el contador
 }
 
@@ -104,9 +123,7 @@ void keyPressed(){
 
   if (keyPressed) {
     if (key == 'q' || key == 'Q') {
-      ciclo1 = false;
-      ciclo2 = false;
-      ciclo3 = true;
+      sketch1 = false;
       sketch2 = true;
 
     }

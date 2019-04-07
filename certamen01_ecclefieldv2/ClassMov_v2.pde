@@ -2,10 +2,14 @@ class ClassMov_02{
 
 int rot;
 int rot2;
+float rot3;
+float rot4;
 
-  ClassMov_02(int rot, int rot2){
+  ClassMov_02(int rot, int rot2, float rot3, float rot4){
     this.rot = rot;
     this.rot2 = rot2;
+    this.rot3 = rot3;
+    this.rot4 = rot4;
   }
 
 
@@ -100,31 +104,80 @@ void figura3(){
 
 // TRIANGULO
 void figura4(int rot2){
-
-  fill(150,200,60);
+  stroke(0);
+  fill(255);
   pushMatrix();
-  rotate(radians(rot2));
-  triangle(-35, 20, 0, -36, 34, 20);
+    triangle(-35, 20, 0, -36, 34, 20);
   popMatrix();
 }
 
-void diagramacion5 (){
+void figura5(int rot2){
+  stroke(0);
+  fill(255);
+  pushMatrix();
+    rotate(radians(rot2));
+    triangle(-35, 20, 0, -36, 34, 20);
+  popMatrix();
+}
+
+void figura6(float rot3){
+  stroke(0);
+  fill(255);
+  pushMatrix();
+    rectMode(CENTER);
+    rotate(radians(rot3));
+    rect(0,0,68,68);
+  popMatrix();
+}
+
+void diagramacion5 (float rot4){
+for(int posY = 0; posY < 650; posY = posY + 190){
   for (int p = 0; p < 960; p = p +138){
     pushMatrix();
       rectMode(CENTER);
-      translate(p, height/2);
-      rotate(radians(frameCount+30));
+      translate(p, posY);
+      rotate(radians(rot4+30));
       figura3();
     popMatrix();
+  }
 }
 }
 
+
+
 void diagramacion6(int rot2){
+  for(int posY = -81; posY < 650; posY = posY + 180){
   for (int p = 0; p < 960; p = p +138){
     pushMatrix();
-      translate(p-69,336);
+      translate(p-69,posY+50);
+      rotate(radians(rot2+60));
       figura4(rot2);
     popMatrix();
   }
 }
+}
+
+void diagramacion7(int rot2){
+  for(int posY = 10; posY < 650; posY = posY + 170){
+  for (int p = 0; p < 960; p = p +138){
+    pushMatrix();
+      translate(p-69,posY+50);
+      figura5(rot2);
+    popMatrix();
+  }
+}
+}
+
+void diagramacion8(float rot3){
+
+  for(int posY = 95; posY < 650; posY = posY + 190){
+  for (int p = 0; p < 960; p = p +138){
+    pushMatrix();
+      translate(p,posY);
+      figura6(rot3);
+    popMatrix();
+  }
+}
+}
+
 }
