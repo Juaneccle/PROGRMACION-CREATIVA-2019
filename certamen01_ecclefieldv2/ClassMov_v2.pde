@@ -1,10 +1,11 @@
 class ClassMov_02{
 
 int rot;
+int rot2;
 
-
-  ClassMov_02(int rot){
+  ClassMov_02(int rot, int rot2){
     this.rot = rot;
+    this.rot2 = rot2;
   }
 
 
@@ -83,5 +84,47 @@ void diagramacion4(int rot){
   }
 }
 
+//////////////////////////////Segundo sketch/////////////////////////////
+//////////////////////////////////////////////////////////////////////////
 
+// HEXAGONO
+void figura3(){
+  for (int i = 0; i < 360; i= i + 60){
+  pushMatrix();
+    fill(0);
+    rotate(radians(i));
+    rect(30,0,60,68);
+  popMatrix();
+}
+}
+
+// TRIANGULO
+void figura4(int rot2){
+
+  fill(150,200,60);
+  pushMatrix();
+  rotate(radians(rot2));
+  triangle(-35, 20, 0, -36, 34, 20);
+  popMatrix();
+}
+
+void diagramacion5 (){
+  for (int p = 0; p < 960; p = p +138){
+    pushMatrix();
+      rectMode(CENTER);
+      translate(p, height/2);
+      rotate(radians(frameCount+30));
+      figura3();
+    popMatrix();
+}
+}
+
+void diagramacion6(int rot2){
+  for (int p = 0; p < 960; p = p +138){
+    pushMatrix();
+      translate(p-69,336);
+      figura4(rot2);
+    popMatrix();
+  }
+}
 }

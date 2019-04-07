@@ -16,6 +16,13 @@ public class certamen01_ecclefieldv2 extends PApplet {
 
 
 int rot;
+int rot2;
+int estado;
+boolean estadoFondo = true;
+boolean sketch2 = false;
+boolean sketch3 = false;
+boolean ciclo3 = false;
+boolean ciclo4 = false;
 boolean ciclo1 = true;
 boolean ciclo2 = false;
 ClassMov_02 a;
@@ -27,16 +34,18 @@ int fondo = 255;
 
 public void setup(){
 
-a = new ClassMov_02(rot);
+a = new ClassMov_02(rot, rot2);
 
 }
 
 public void draw(){
   // Comprovaciones
-  println(rot);
+  println(rot,rot2);
   /////////////////
   background(fondo);
   rot = frameCount;
+  rot2 = rot2 + 1;
+  estado = estado + 1;
 
   if(ciclo1 == true){
     a.diagramacion1(rot);
@@ -49,23 +58,45 @@ public void draw(){
   }
 
   if(rot > 90){
-
     fondo = negro;
     ciclo1 = false;
     ciclo2 = true;
 
   }
- if(rot > 180){
-   frameCount = 0;
- }
 
   if(rot < 90 ){
-
     fondo = blanco;
     ciclo1 = true;
     ciclo2 = false;
   }
 
+  if(estado > 108){
+    ciclo4 = true;
+    
+  }
+
+  if(estado > 240 ){
+    ciclo4 = false;
+    estado = 0;
+  }
+
+
+  if (ciclo3 == true){
+    a.diagramacion5();
+    //a.diagramacion6();
+    fondo = blanco;
+    ciclo1 = false;
+    ciclo2 = false;
+    sketch2 = true;
+  }
+
+
+  if(ciclo4 == true && sketch2 == true){
+    a.diagramacion6(rot2);
+  }
+
+
+  if(rot > 180){frameCount = 0;}      // Resetear el contador
 }
 
 
@@ -86,14 +117,35 @@ public void keyPressed(){
       ciclo2 = false;
     }
   }
+
+  if (keyPressed) {
+    if (key == 'q' || key == 'Q') {
+      ciclo1 = false;
+      ciclo2 = false;
+      ciclo3 = true;
+      sketch2 = true;
+
+    }
+  }
+
+  if (keyPressed) {
+    if (key == 'e' || key == 'E') {
+
+      sketch3 = true;
+    } else if (key == 'r' || key == 'R'){
+      sketch3 = false;
+    }
+  }
+
 }
 class ClassMov_02{
 
 int rot;
+int rot2;
 
-
-  ClassMov_02(int rot){
+  ClassMov_02(int rot, int rot2){
     this.rot = rot;
+    this.rot2 = rot2;
   }
 
 
@@ -172,8 +224,71 @@ public void diagramacion4(int rot){
   }
 }
 
+//////////////////////////////Segundo sketch/////////////////////////////
+//////////////////////////////////////////////////////////////////////////
+
+// HEXAGONO
+public void figura3(){
+  for (int i = 0; i < 360; i= i + 60){
+  pushMatrix();
+    fill(0);
+    rotate(radians(i));
+    rect(30,0,60,68);
+  popMatrix();
+}
+}
+
+// TRIANGULO
+public void figura4(int rot2){
+
+  fill(150,200,60);
+  pushMatrix();
+  rotate(radians(rot2));
+  triangle(-35, 20, 0, -36, 34, 20);
+  popMatrix();
+}
+
+public void diagramacion5 (){
+  for (int p = 0; p < 960; p = p +138){
+    pushMatrix();
+      rectMode(CENTER);
+      translate(p, height/2);
+      rotate(radians(frameCount+30));
+      figura3();
+    popMatrix();
+}
+}
+
+public void diagramacion6(int rot2){
+  for (int p = 0; p < 960; p = p +138){
+    pushMatrix();
+      translate(p-69,336);
+      figura4(rot2);
+    popMatrix();
+  }
+}
+}
+/*
+// HEXAGONO
+void setup(){
+  size(500,500);
+  background(255);
+}
+
+void draw(){
+
+for (i = 0; i < 360; i + 40){
+pushMatrix();
+fill(0);
+rectMode(CENTER);
+translate(width/2, height/2);
+rotate(radians(i));
+rect(0,0,50,50);
+popMatrix();
+}
 
 }
+*/
   public void settings() { 
 size(842,595); }
   static public void main(String[] passedArgs) {
