@@ -1,4 +1,27 @@
-int rot;
+
+
+
+void setup(){
+size(500,500);
+}
+
+void draw(){
+
+for(int posY = 0; posY < 100; posY = posY +10){
+for (int opacidad = 255; opacidad > 0; opacidad = opacidad - 50){
+    pushMatrix();
+      ellipseMode(CENTER);
+      translate(width/2, height/2);
+      fill(230,50,opacidad);
+      noStroke();
+      ellipse(posY,posY, 100,100);
+    popMatrix();
+
+  }
+}
+}
+
+/*int rot;
 
 void setup(){
   size(842,595);
@@ -46,3 +69,25 @@ void triangulo(){
     popMatrix();
 
 }
+int blanco = 255;
+int negro = 255;
+int fondo = 255;
+
+void draw(){
+backgorund(fondo);
+}
+
+void keyPressed(){
+  if (keyPressed) {
+    if (key == 'b' || key == 'B') {
+      fondo = negro;
+    }
+  }
+
+  if (keyPressed) {
+    if (key == 'w' || key == 'W') {
+      fondo = blanco;
+    }
+  }
+}
+*/

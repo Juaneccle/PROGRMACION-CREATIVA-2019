@@ -14,14 +14,37 @@ import java.io.IOException;
 
 public class tests extends PApplet {
 
-int rot;
+
+
 
 public void setup(){
-  
 
 }
 
 public void draw(){
+
+for(int posY = 0; posY < 100; posY = posY +10){
+for (int opacidad = 255; opacidad > 0; opacidad = opacidad - 50){
+    pushMatrix();
+      ellipseMode(CENTER);
+      translate(width/2, height/2);
+      fill(230,50,opacidad);
+      noStroke();
+      ellipse(posY,posY, 100,100);
+    popMatrix();
+
+  }
+}
+}
+
+/*int rot;
+
+void setup(){
+  size(842,595);
+
+}
+
+void draw(){
 background(255);
 rot = frameCount;
 for (int p = 0; p < 960; p = p +138){
@@ -42,7 +65,7 @@ for (int p = 0; p < 960; p = p +138){
 }
 }
 
-public void hexagono(){
+void hexagono(){
 
   for (int i = 0; i < 360; i= i + 60){
   pushMatrix();
@@ -53,7 +76,7 @@ public void hexagono(){
   }
 }
 
-public void triangulo(){
+void triangulo(){
   fill(150,200,60);
     pushMatrix();
 
@@ -62,7 +85,9 @@ public void triangulo(){
     popMatrix();
 
 }
-  public void settings() {  size(842,595); }
+*/
+  public void settings() { 
+size(500,500); }
   static public void main(String[] passedArgs) {
     String[] appletArgs = new String[] { "tests" };
     if (passedArgs != null) {
